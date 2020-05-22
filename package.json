@@ -1,5 +1,8 @@
 {
   "private": true,
+  "scripts": {
+    "dev": "cd packages/web && react-scripts start"
+  },
   "workspaces": [
     "packages/*"
   ]
