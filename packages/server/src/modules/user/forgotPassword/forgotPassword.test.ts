@@ -5,7 +5,7 @@ import { createForgotPasswordLink } from "../../../Utils/createForgotPasswordLin
 import * as Redis from "ioredis";
 import { forgotPasswordLockAccount } from "../../../Utils/forgotPasswordLockAccount";
 import { forgotPasswordLockedError } from "../login/errorMessages";
-import { passwordNotLongEnough } from "../register/errorMessages";
+import { passwordNotLongEnough } from "@cribswap/common";
 import { expiredChangePasswordKeyError } from "./errorMessages";
 import { createTestConnection } from "../../../testUtils/createTestConnection";
 

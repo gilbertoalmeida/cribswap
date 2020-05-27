@@ -1,5 +1,5 @@
 {
-  "name": "web",
+  "name": "@cribswap/web",
   "version": "0.1.0",
   "private": true,
   "dependencies": {
@@ -23,7 +23,9 @@
     "react-router-dom": "^5.2.0",
     "react-scripts": "3.4.1",
     "tslint-react": "^5.0.0",
-    "typescript": "~3.7.2"
+    "typescript": "~3.7.2",
+    "yup": "^0.29.1",
+    "@cribswap/common": "1.0.0"
   },
   "scripts": {
     "start": "react-scripts start",
@@ -47,6 +49,7 @@
     ]
   },
   "devDependencies": {
-    "@types/react-router-dom": "^5.1.5"
+    "@types/react-router-dom": "^5.1.5",
+    "@types/yup": "^0.29.0"
   }
 }

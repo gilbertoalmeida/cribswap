@@ -1,28 +1,12 @@
-import * as yup from "yup";
 import { User } from "../../../entity/User";
 import { formatYuperror } from "../../../Utils/formatYupError";
-import {
-  duplicateEmail,
-  emailNotLongEnough,
-  emailNotValid
-} from "./errorMessages";
+import { duplicateEmail } from "./errorMessages";
 import { createConfirmEmailLink } from "./createConfirmEmailLink";
 import { ResolverMap } from "../../../types/graphql-utils";
 import { GQL } from "../../../types/schema";
 import { Context } from "graphql-yoga/dist/types";
 import { sendEmail } from "../../../Utils/sendEmail";
-import { registerPasswordValidation } from "../../../yupSchemas";
-
-/* field validation 
-second parameter is custom message*/
-const registerSchema = yup.object().shape({
-  email: yup
-    .string()
-    .min(3, emailNotLongEnough)
-    .max(255)
-    .email(emailNotValid),
-  password: registerPasswordValidation
-});
+import { validUserSchema } from "@cribswap/common";
 
 /* IResolvers is getting types to ad. For the _ , for example */
 export const resolvers: ResolverMap = {
@@ -39,7 +23,7 @@ export const resolvers: ResolverMap = {
     ) => {
       /* validation of the argument fields */
       try {
-        await registerSchema.validate(args, { abortEarly: false });
+        await validUserSchema.validate(args, { abortEarly: false });
         /* abortEarly avoids teh validation to stop on the first err
         and shows all the errors */
       } catch (err) {

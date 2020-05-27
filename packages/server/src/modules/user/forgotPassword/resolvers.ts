@@ -10,7 +10,7 @@ import {
   expiredChangePasswordKeyError
 } from "./errorMessages";
 import { forgotPasswordPrefix } from "../../../constants";
-import { registerPasswordValidation } from "../../../yupSchemas";
+import { registerPasswordValidation } from "@cribswap/common";
 import { formatYuperror } from "../../../Utils/formatYupError";
 
 /* field validation 

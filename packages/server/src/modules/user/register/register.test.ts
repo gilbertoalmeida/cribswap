@@ -1,10 +1,10 @@
 import { User } from "../../../entity/User";
 import {
-  duplicateEmail,
   emailNotLongEnough,
   emailNotValid,
   passwordNotLongEnough
-} from "./errorMessages";
+} from "@cribswap/common";
+import { duplicateEmail } from "./errorMessages";
 import { Connection } from "typeorm";
 import { TestClient } from "../../../Utils/TestClient";
 import { createTestConnection } from "../../../testUtils/createTestConnection";

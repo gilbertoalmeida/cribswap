@@ -2,6 +2,7 @@ import React, { PureComponent } from "react";
 import { Form, Input, Button } from "antd";
 import { UserOutlined, LockOutlined } from "@ant-design/icons";
 import { withFormik, FormikErrors, FormikProps } from "formik";
+import { validUserSchema } from "@cribswap/common";
 
 const FormItem = Form.Item;
 
@@ -19,14 +20,27 @@ or null */
 
 /* C is wrapped in a high order component withFormik, now we have access
 to some props, which are */
+/* touched is used to know when a field is being interacted with, eg
+not show error messages before the user interacts. help is to show
+the error on the field */
 export class C extends PureComponent<FormikProps<FormValues> & Props> {
   render() {
-    const { values, handleChange, handleBlur, handleSubmit } = this.props;
+    const {
+      values,
+      handleChange,
+      handleBlur,
+      handleSubmit,
+      touched,
+      errors
+    } = this.props;
 
     return (
       <form style={{ display: "flex" }} onSubmit={handleSubmit}>
         <div style={{ width: 400, margin: "auto" }}>
-          <FormItem>
+          <FormItem
+            help={touched.email && errors.email ? errors.email : null}
+            validateStatus={touched.email && errors.email ? "error" : undefined}
+          >
             <Input
               name="email"
               prefix={<UserOutlined className="site-form-item-icon" />}
@@ -36,7 +50,12 @@ export class C extends PureComponent<FormikProps<FormValues> & Props> {
               onBlur={handleBlur}
             />
           </FormItem>
-          <FormItem>
+          <FormItem
+            help={touched.password && errors.password ? errors.password : null}
+            validateStatus={
+              touched.password && errors.password ? "error" : undefined
+            }
+          >
             <Input
               name="password"
               prefix={<LockOutlined className="site-form-item-icon" />}
@@ -78,8 +97,11 @@ Formik requires to have the name of the input there!*/
 /* handleSubmit will be called when the form is submited, the values
 are the fields which can be expanded {}. The second parameters is the
 formik bag  */
+/* Formik has a integration with yup in a prop called
+validationSchema */
 
 export const RegisterView = withFormik<Props, FormValues>({
+  validationSchema: validUserSchema,
   mapPropsToValues: () => ({ email: "", password: "" }),
   handleSubmit: async (values, { props, setErrors }) => {
     const errors = await props.submit(values);
