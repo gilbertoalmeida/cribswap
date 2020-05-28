@@ -25,7 +25,8 @@
     "tslint-react": "^5.0.0",
     "typescript": "~3.7.2",
     "yup": "^0.29.1",
-    "@cribswap/common": "1.0.0"
+    "@cribswap/common": "1.0.0",
+    "@cribswap/controller": "1.0.0"
   },
   "scripts": {
     "start": "react-scripts start",
