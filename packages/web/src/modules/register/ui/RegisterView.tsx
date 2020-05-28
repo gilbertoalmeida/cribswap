@@ -1,10 +1,11 @@
 import React, { PureComponent } from "react";
-import { Form, Input, Button } from "antd";
+import { Form as AntForm, Button } from "antd"; // name conflict with Formik Form
 import { UserOutlined, LockOutlined } from "@ant-design/icons";
-import { withFormik, FormikErrors, FormikProps } from "formik";
+import { withFormik, FormikErrors, FormikProps, Field, Form } from "formik";
 import { validUserSchema } from "@cribswap/common";
+import { InputField } from "../../shared/InputField";
 
-const FormItem = Form.Item;
+const FormItem = AntForm.Item;
 
 /* interfaces are the typescript definitions */
 interface FormValues {
@@ -25,49 +26,33 @@ not show error messages before the user interacts. help is to show
 the error on the field */
 export class C extends PureComponent<FormikProps<FormValues> & Props> {
   render() {
-    const {
-      values,
-      handleChange,
-      handleBlur,
-      handleSubmit,
-      touched,
-      errors
-    } = this.props;
-
     return (
-      <form style={{ display: "flex" }} onSubmit={handleSubmit}>
+      <Form
+        /* using Form from Formik instead of the normal form saves us
+      from having to do a onSubmit={handleSubmit}. Formik does 
+      everything. */
+        style={{ display: "flex" }}
+      >
         <div style={{ width: 400, margin: "auto" }}>
-          <FormItem
-            help={touched.email && errors.email ? errors.email : null}
-            validateStatus={touched.email && errors.email ? "error" : undefined}
-          >
-            <Input
-              name="email"
-              prefix={<UserOutlined className="site-form-item-icon" />}
-              placeholder="Email"
-              value={values.email}
-              onChange={handleChange}
-              onBlur={handleBlur}
-            />
-          </FormItem>
-          <FormItem
-            help={touched.password && errors.password ? errors.password : null}
-            validateStatus={
-              touched.password && errors.password ? "error" : undefined
-            }
-          >
-            <Input
-              name="password"
-              prefix={<LockOutlined className="site-form-item-icon" />}
-              type="password"
-              placeholder="Password"
-              value={values.password}
-              onChange={handleChange}
-              onBlur={handleBlur}
-            />
-          </FormItem>
+          <Field
+            /* using the template InputField component just passing 
+            the name and the extra unique things */
+            name="email"
+            prefix={<UserOutlined className="site-form-item-icon" />}
+            placeholder="Email"
+            component={InputField}
+          />
+          <Field
+            /* using the template InputField component just passing 
+            the name and the extra unique things */
+            name="password"
+            type="password"
+            prefix={<LockOutlined className="site-form-item-icon" />}
+            placeholder="Password"
+            component={InputField}
+          />
           <FormItem>
-            <a className="login-form-forgot" href="">
+            <a className="login-form-forgot" href="/">
               Forgot password
             </a>
           </FormItem>
@@ -81,10 +66,10 @@ export class C extends PureComponent<FormikProps<FormValues> & Props> {
             </Button>
           </FormItem>
           <FormItem>
-            Or <a href="">login now!</a>
+            Or <a href="/">login now!</a>
           </FormItem>
         </div>
-      </form>
+      </Form>
     );
   }
 }
