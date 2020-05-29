@@ -2,17 +2,24 @@ import * as React from "react";
 import { graphql, ChildMutateProps } from "react-apollo";
 import gql from "graphql-tag";
 
+import {
+  RegisterMutation,
+  RegisterMutationVariables
+} from "./__generated__/RegisterMutation";
+
 interface Props {
   children: (data: {
-    submit: (values: any) => Promise<null>;
+    submit: (values: RegisterMutationVariables) => Promise<null>;
   }) => JSX.Element | null;
 }
 
 /* ChildMutateProps is used to specify the types of the values
 expected. First parameter are the Props we have above, then you have
-the types of the variables(values). Any is the default */
-class C extends React.PureComponent<ChildMutateProps<Props, any, any>> {
-  submit = async (values: any) => {
+what is expected to come from the mutation and then the variables */
+class C extends React.PureComponent<
+  ChildMutateProps<Props, RegisterMutation, RegisterMutationVariables>
+> {
+  submit = async (values: RegisterMutationVariables) => {
     console.log(values);
     const response = await this.props.mutate({
       variables: values
@@ -27,7 +34,7 @@ class C extends React.PureComponent<ChildMutateProps<Props, any, any>> {
 }
 
 const registerMutation = gql`
-  mutation($email: String!, $password: String!) {
+  mutation RegisterMutation($email: String!, $password: String!) {
     register(email: $email, password: $password) {
       path
       message
@@ -35,4 +42,8 @@ const registerMutation = gql`
   }
 `;
 
-export const RegisterController = graphql(registerMutation)(C);
+export const RegisterController = graphql<
+  Props,
+  RegisterMutation,
+  RegisterMutationVariables
+>(registerMutation)(C);

@@ -7,6 +7,7 @@
     "username": "postgres",
     "password": "",
     "database": "cribswap-db",
+    "dropSchema": true,
     "synchronize": true,
     "logging": false,
     "entities": ["src/entity/**/*.ts"],
