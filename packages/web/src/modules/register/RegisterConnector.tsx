@@ -19,7 +19,7 @@ export class RegisterConnector extends PureComponent {
         we are passing the submit function inside an object to the
         this.props.children. That's why we can get it here */
         >
-          {({ submit }) => <RegisterView submit={submit} />}
+          {({ submit }: { submit: any }) => <RegisterView submit={submit} />}
         </RegisterController>
       </div>
     );

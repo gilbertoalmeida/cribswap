@@ -3,6 +3,8 @@
   "version": "0.1.0",
   "private": true,
   "dependencies": {
+    "@cribswap/common": "1.0.0",
+    "@cribswap/controller": "1.0.0",
     "@testing-library/jest-dom": "^4.2.4",
     "@testing-library/react": "^9.3.2",
     "@testing-library/user-event": "^7.1.2",
@@ -18,15 +20,13 @@
     "graphql": "^15.0.0",
     "graphql-tag": "^2.10.3",
     "react": "^16.13.1",
-    "react-apollo": "^3.1.5",
+    "react-apollo": "^2.1.5",
     "react-dom": "^16.13.1",
     "react-router-dom": "^5.2.0",
     "react-scripts": "3.4.1",
     "tslint-react": "^5.0.0",
     "typescript": "~3.7.2",
-    "yup": "^0.29.1",
-    "@cribswap/common": "1.0.0",
-    "@cribswap/controller": "1.0.0"
+    "yup": "^0.29.1"
   },
   "scripts": {
     "start": "react-scripts start",
