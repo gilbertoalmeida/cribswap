@@ -89,7 +89,9 @@ export const startServer = async () => {
    set to true and the database drops(deletes everything inside)*/
 
   /* Starting server */
-  const port = process.env.NODE_ENV === "test" ? 0 : 4000;
+
+  const port = process.env.NODE_ENV === "test" ? 0 : process.env.PORT || 4000;
+
   const app = await server.start({ cors, port });
 
   console.log(`Server is running on localhost:${port}`);

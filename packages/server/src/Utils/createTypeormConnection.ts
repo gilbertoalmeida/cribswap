@@ -1,4 +1,5 @@
 import { createConnection, getConnectionOptions } from "typeorm";
+import { User } from "../entity/User";
 
 export const createTypeormConnection = async () => {
   const connectionOptions = await getConnectionOptions(process.env.NODE_ENV);
@@ -7,7 +8,14 @@ export const createTypeormConnection = async () => {
   that is set based on the script run (start or test), this is the name of
   the object inside the ormconfig file that is used, AND sinchronizes it
   so that it catches changes in the entities, for example (set as true in ormconfig)*/
-  return createConnection({ ...connectionOptions, name: "default" });
+  return process.env.NODE_ENV === "production"
+    ? createConnection({
+        ...connectionOptions,
+        url: process.env.DATABASE_URL,
+        entities: [User],
+        name: "default"
+      } as any)
+    : createConnection({ ...connectionOptions, name: "default" });
 
   /* the spread operator adding name: default is bc jest uses this default name, so
   we are getting the right connection options first by their name: development or test,

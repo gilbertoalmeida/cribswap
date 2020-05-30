@@ -1,5 +1,11 @@
 [
   {
+    "name": "production",
+    "type": "postgres",
+    "synchronize": true,
+    "logging": false
+  },
+  {
     "name": "development",
     "type": "postgres",
     "host": "localhost",
@@ -7,7 +13,6 @@
     "username": "postgres",
     "password": "",
     "database": "cribswap-db",
-    "dropSchema": true,
     "synchronize": true,
     "logging": false,
     "entities": ["src/entity/**/*.ts"],
