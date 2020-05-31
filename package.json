@@ -5,9 +5,21 @@
     "build:server": "lerna run build --scope={@cribswap/common,@cribswap/server}",
     "build:web": "lerna run build --scope={@cribswap/common,@cribswap/web}"
   },
-  "workspaces": [
-    "packages/*"
-  ],
+  "workspaces": {
+    "packages": [
+      "packages/*"
+    ],
+    "nohoist": [
+      "**/react-native",
+      "**/react-native/**",
+      "**/expo",
+      "**/expo/**",
+      "**/react-native-typescript-transformer",
+      "**/react-native-typescript-transformer/**",
+      "**/metro-bundler-config-yarn-workspaces",
+      "**/metro-bundler-config-yarn-workspaces/**"
+    ]
+  },
   "name": "cribswap",
   "devDependencies": {
     "lerna": "^3.22.0"
