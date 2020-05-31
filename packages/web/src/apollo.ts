@@ -4,7 +4,7 @@ import { HttpLink } from "apollo-link-http";
 
 export const client = new ApolloClient({
   link: new HttpLink({
-    uri: "http://localhost:4000",
+    uri: process.env.REACT_APP_SERVER_URL, // there are 2 env files, for dev and production
     credentials: "include"
   }),
   cache: new InMemoryCache()

@@ -117,3 +117,5 @@ dist
 
 #Redis dumps
 dump.rdb
+# Local Netlify folder
+.netlify

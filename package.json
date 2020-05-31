@@ -2,7 +2,8 @@
   "private": true,
   "scripts": {
     "dev": "cd packages/web && react-scripts start",
-    "build:server": "lerna run build --scope={@cribswap/common,@cribswap/server}"
+    "build:server": "lerna run build --scope={@cribswap/common,@cribswap/server}",
+    "build:web": "lerna run build --scope={@cribswap/common,@cribswap/web}"
   },
   "workspaces": [
     "packages/*"
