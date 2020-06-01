@@ -12,6 +12,8 @@
     "nohoist": [
       "**/react-native",
       "**/react-native/**",
+      "**/react-native-elements",
+      "**/react-native-elements/**",
       "**/expo",
       "**/expo/**",
       "**/react-native-typescript-transformer",
